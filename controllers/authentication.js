@@ -1,4 +1,7 @@
 var User = require('./../models/user');
+var config = require('./../config');
+var jwt = require('jsonwebtoken');
+
 module.exports = {
     authenticate: function(req,res,next){
         User.findOne({name: req.body.name}).exec(function(err,user){
@@ -14,7 +17,7 @@ module.exports = {
 
                 // if user is found and password is right
                 // create a token
-                var token = jwt.sign(user, app.get('superSecret'), {
+                var token = jwt.sign(user, config.secret, {
                   expiresInMinutes: 1440 // expires in 24 hours
                 });
 

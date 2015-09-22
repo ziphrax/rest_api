@@ -5,8 +5,7 @@ var express = require('express'),
     bodyParser  = require('body-parser'),
     routes = require('./routes'),
     email = require('emailjs'),
-    config = require('./config'),
-    jwt = require('jsonwebtoken');
+    config = require('./config');
 
 
 // Start smtp
@@ -26,7 +25,6 @@ var mongoConnection = mongoose.connect(config.database,function(err){
 
 // Start the server
 app.set('port', process.env.PORT || 3000);
-app.set('superSecret', config.secret);
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());

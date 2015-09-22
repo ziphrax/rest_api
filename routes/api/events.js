@@ -1,6 +1,6 @@
 var express = require('express'),
     router = new express.Router()
-    eventsController = require('./../../controllers/events');
+    eventsController = require('./../../controllers/events'),
     authenticator = require('./../../controllers/authenticator');
 
 router.use(authenticator);
