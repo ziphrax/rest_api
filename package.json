@@ -9,7 +9,11 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "body-parser": "^1.14.0",
+    "emailjs": "^0.3.16",
     "express": "^4.13.3",
-    "mongoose": "^4.1.7"
+    "jsonwebtoken": "^5.0.5",
+    "mongoose": "^4.1.8",
+    "morgan": "^1.6.1"
   }
 }

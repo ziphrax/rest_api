@@ -6,7 +6,7 @@ module.exports = {
             if(err){
                 res.status(500).send(err.message);
             } else {
-                res.status(200).json(dosc);
+                res.status(200).json(docs);
             }
         });
     },

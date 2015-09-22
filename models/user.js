@@ -12,7 +12,9 @@ var UserSchema = new mongoose.Schema({
     address : String,
     phone_tel: String,
     phone_mob: String,
-    phone_work: String
+    phone_work: String,
+	admin: Boolean,
+	password: String
 });
 
 module.exports = mongoose.model('User',UserSchema);
