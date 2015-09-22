@@ -34,9 +34,9 @@ app.use(bodyParser.json());
 // use morgan to log requests to the console
 app.use(morgan('dev'));
 
-app.use('/',routes);
 app.use('/public',express.static('public_assets'));
 app.use('/public/libs',express.static('bower_components'));
+app.use('/',routes);
 
 app.listen(app.get('port'),function(){
     console.log('App listening on port: ' + app.get('port'));
