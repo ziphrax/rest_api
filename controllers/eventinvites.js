@@ -11,7 +11,7 @@ var smtpServer = email.server.connect({
 
 module.exports = {
     sendInvite: function(req,res,next){
-        server.send({
+        smtpServer.send({
             text: req.body.text,
             from: req.body.from,
             to: req.body.to,
