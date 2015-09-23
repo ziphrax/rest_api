@@ -1,32 +1,35 @@
 var eventInviteModel = require('./../models/eventinvite');
 var config = require('./../config');
-var email   = require("emailjs");
+var nodemailer  = require("nodemailer");
+var smtpTransport = require('nodemailer-smtp-transport');
 
-var smtpServer = email.server.connect({
-    user: config.smtpUser,
-    password: config.smtpPassword,
-    host: config.smtpHost,
-    ssl: config.smtpSSLEnabled
-});
+var transporter = nodemailer.createTransport("SMTP",{
+   port: config.smtpPort,
+   secure: false,
+   ignoreTLS: true
+ });
 
 module.exports = {
     sendInvite: function(req,res,next){
-        smtpServer.send({
-            text: req.body.text,
-            from: req.body.from,
-            to: req.body.to,
-            cc: req.body.cc,
-            subject: req.body.subject
-        },function(err,message){
+      transporter.sendMail({
+        from: 'sender@address',
+        to: 'receiver@address',
+        subject: 'hello',
+        text: 'hello world!'
+      },function(err,message){
             if(err){
-                res.status(500).send(err.message);
+                res.status(500).json({'success': false, data: err });
             } else {
                 var invite = new eventInviteModel();
                 invite.event_id = req.body.event_id;
                 invite.user_id = req.body.user_id;
                 invite.sent = Date.now();
                 invite.save(function(err){
-                    res.json(invite);
+                  if(err){
+                    res.status(500).json({'success': false, data: err });
+                  } else {
+                    res.json({'success': true, data: [invite] });
+                  }
                 });
             }
         });

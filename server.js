@@ -4,17 +4,8 @@ var express = require('express'),
     morgan = require('morgan'),
     bodyParser  = require('body-parser'),
     routes = require('./routes'),
-    email = require('emailjs'),
     config = require('./config');
 
-
-// Start smtp
-var smtpServer = email.server.connect({
-    user: config.smtpUser,
-    password: config.smtpPassword,
-    host: config.smtpHost,
-    ssl: config.smtpSSLEnabled
-});
 var mongoConnection = mongoose.connect(config.database);
 
 // Start the server
@@ -39,7 +30,7 @@ if (!module.parent) {
         app.settings.env
       );
     });
-    
+
     process.on( 'SIGTERM', function () {
        server.close(function () {
          console.log( "Closed out remaining connections.");

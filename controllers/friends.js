@@ -1,23 +1,22 @@
 var friendModel = require('./../models/friend');
 var config = require('./../config');
-var email   = require("emailjs");
+var nodemailer  = require("nodemailer");
+var smtpTransport = require('nodemailer-smtp-transport');
 
-var smtpServer = email.server.connect({
-    user: config.smtpUser,
-    password: config.smtpPassword,
-    host: config.smtpHost,
-    ssl: config.smtpSSLEnabled
-});
+var transporter = nodemailer.createTransport("SMTP",{
+   port: config.smtpPort,
+   secure: false,
+   ignoreTLS: true
+ });
 
 module.exports = {
     makeFriends: function(req,res,next){
-        smtpServer.send({
-            text: req.body.text,
-            from: req.body.from,
-            to: req.body.to,
-            cc: req.body.cc,
-            subject: req.body.subject
-        },function(err,message){
+      transporter.sendMail({
+        from: 'sender@address',
+        to: 'receiver@address',
+        subject: 'hello',
+        text: 'hello world!'
+      },function(err,message){
             if(err){
                 res.status(500).send(err.message);
             } else {
