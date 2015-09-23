@@ -6,7 +6,7 @@ module.exports = {
             if(err){
                 res.status(500).send(err.message);
             } else {
-                res.status(200).json(docs);
+                res.status(200).json({'success':true, data: docs });
             }
         });
     },
@@ -17,15 +17,15 @@ module.exports = {
         newUser.lastName = req.body.lastName;
         newUser.EmailAddress = req.body.EmailAddress;
         newUser.DateOfBirth = req.body.DateOfBirth;
-    	newUser.status = req.body.status;
-    	newUser.updated =  Date.now();
+        newUser.status = 'New';
+        newUser.created =  Date.now();
         newUser.address = req.body.address;
         newUser.phone_tel = req.body.phone_tel;
         newUser.phone_mob = req.body.phone_mob;
         newUser.phone_work = req.body.phone_work;
 
         newUser.save(function(){
-            res.json([newUser]);
+            res.json({'success': true, data: [newUser] });
         });
     },
     getUser: function(req,res){
@@ -33,9 +33,9 @@ module.exports = {
             if(err){
                 res.status(500).send(err.message);
             } else if (doc) {
-                res.json([doc]);
+                res.json({ 'success':true,'data':[doc] });
             } else {
-                res.status(404).send('The requested resource does not exist');
+                res.status(404).json({'success': false, 'message': 'The requested resource does not exist' });
             }
         });
     },
@@ -44,22 +44,22 @@ module.exports = {
             if(err){
                 res.status(500).send(err.message);
             } else if (doc) {
-                doc.firstName = req.body.firstName;
-                doc.lastName = req.body.lastName;
-                doc.EmailAddress = req.body.EmailAddress;
-                doc.DateOfBirth = req.body.DateOfBirth;
-                doc.status = 'New';
-                doc.created =  Date.now();
-                doc.address = req.body.address;
-                doc.phone_tel = req.body.phone_tel;
-                doc.phone_mob = req.body.phone_mob;
-                doc.phone_work = req.body.phone_work;
+                doc.firstName = req.body.firstName?req.body.firstName:doc.firstName;
+                doc.lastName = req.body.lastName?req.body.lastName:doc.lastName;
+                doc.EmailAddress = req.body.EmailAddress?req.body.EmailAddress:doc.EmailAddress;
+                doc.DateOfBirth = req.body.DateOfBirth?req.body.DateOfBirth:doc.DateOfBirth;
+                doc.status = req.body.status?req.body.status:doc.status;
+                doc.updated =  Date.now();
+                doc.address = req.body.address?req.body.address:doc.address;
+                doc.phone_tel = req.body.phone_tel?req.body.phone_tel:doc.phone_tel;
+                doc.phone_mob = req.body.phone_mob?req.body.phone_mob:doc.phone_mob;
+                doc.phone_work = req.body.phone_work?req.body.phone_work:doc.phone_work;
 
                 doc.save(function(){
-                    res.json([newUser]);
+                    res.json({'success': true, data: [doc] });
                 });
             } else {
-                res.status(404).send('The requested resource does not exist');
+                res.status(404).json({'success': false, 'message': 'The requested resource does not exist' });
             }
         });
     },
@@ -69,10 +69,10 @@ module.exports = {
                 res.status(500).send(err.message);
             } else if (doc) {
                 doc.remove(function(err){
-                    res.status(200).send('User Deleted');
+                    res.status(200).json({'success': true, 'message': 'User Deleted' });
                 });
             } else {
-                res.status(404).send('The requested resource does not exist');
+                res.status(404).json({'success': false, 'message': 'The requested resource does not exist' });
             }
         });
     },

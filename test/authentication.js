@@ -5,7 +5,7 @@ var expect = chai.expect;
 var should = require('should');
 var namespace = '/api/v1';
 var app = require(__dirname + '/../server.js');
-var port = 3000;
+var port = 3001;
 var controller;
 var jwt = '';
 
@@ -23,7 +23,7 @@ describe( namespace + '/authentication' , function(){
             .end( done );
     });
 
-    it('with incorrect username should error' , function(done){
+    it('should respond with incorrect username should error' , function(done){
         request(app)
             .post(namespace + '/authentication')
             .send({ name:'Administrator2' , password:'Admin' })
@@ -35,7 +35,7 @@ describe( namespace + '/authentication' , function(){
             .end( done );
     });
 
-    it('with incorrect password should error' , function(done){
+    it('should respond with incorrect password should error' , function(done){
         request(app)
             .post(namespace + '/authentication')
             .send({ name:'Administrator' , password:'Admin2' })

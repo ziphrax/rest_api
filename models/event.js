@@ -7,9 +7,9 @@ var EventSchema = new mongoose.Schema({
 	created: Date,
 	updated: Date,
 	owner: String,
-    longitude : Number,
-    lattitude: Number,
-    address : String
+	longitude : Number,
+	lattitude: Number,
+	address : String
 });
 
 module.exports = mongoose.model('Event',EventSchema);

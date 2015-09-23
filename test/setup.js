@@ -9,12 +9,9 @@ var port = 3001;
 var controller;
 var jwt = '';
 
-describe(namespace + '/events',function(){
+describe(namespace + '/setup',function(){
 
-    it('GET /');
-    it('GET /:ID');
-    it('POST /');
-    it('POST /:ID');
-    it('DELETE /:ID');
+  it('should setup the application');
+  it('should prevent you setting up the application a 2nd time');
 
 });

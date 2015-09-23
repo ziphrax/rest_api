@@ -5,7 +5,7 @@ var expect = chai.expect;
 var should = require('should');
 var namespace = '/api/v1';
 var app = require(__dirname + '/../server.js');
-var port = 3000;
+var port = 3001;
 var controller;
 var jwt = '';
 
@@ -16,7 +16,7 @@ describe('app',function(){
         done();
     });
 
-    it('should be listening at localhost:3000', function (done) {
+    it('should be listening at localhost:3001', function (done) {
         request(app)
             .get('/')
             .expect( 200 , done );

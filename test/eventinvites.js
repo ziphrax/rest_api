@@ -9,12 +9,8 @@ var port = 3001;
 var controller;
 var jwt = '';
 
-describe(namespace + '/events',function(){
+describe( namespace + '/eventinvites' , function(){
 
-    it('GET /');
-    it('GET /:ID');
-    it('POST /');
-    it('POST /:ID');
-    it('DELETE /:ID');
+  it('should send event invites');
 
 });
