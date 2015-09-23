@@ -86,6 +86,28 @@ describe(namespace + '/users',function(){
         .end( done );
     });
 
+    it('POST / without auth should error',function(done){
+      request(app)
+        .post(namespace + '/users/')
+        .set('x-access-token','')
+        .send({
+          name: 'User2',
+        	firstName: 'String',
+        	lastName: 'String',
+        	EmailAddress: 'String',
+        	DateOfBirth: Date.now(),
+        	owner: 'String',
+        	address : 'String',
+        	phone_tel: 'String',
+        	phone_mob: 'String',
+        	phone_work: 'String',
+        	admin: false,
+        	password: 'password'
+        })
+        .expect(401)
+        .end( done );
+    });
+
     it('POST /:ID',function(done){
       request(app)
         .post(namespace + '/users/5602dd318284c02405bf68a2')

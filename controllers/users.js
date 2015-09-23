@@ -4,7 +4,7 @@ module.exports = {
     getUsers: function(req,res){
         userModel.find({}).exec(function(err,docs){
             if(err){
-                res.status(500).send(err.message);
+                res.status(500).json({'success': false, 'message': err.message });
             } else {
                 res.status(200).json({'success':true, data: docs });
             }
@@ -31,7 +31,7 @@ module.exports = {
     getUser: function(req,res){
         userModel.findOne({_id:req.params.id}).exec(function(err,doc){
             if(err){
-                res.status(500).send(err.message);
+                res.status(500).json({'success': false, 'message': err.message });
             } else if (doc) {
                 res.json({ 'success':true,'data':[doc] });
             } else {
@@ -42,7 +42,7 @@ module.exports = {
     updateUser: function(req,res){
         userModel.findOne({_id:req.params.id}).exec(function(err,doc){
             if(err){
-                res.status(500).send(err.message);
+                res.status(500).json({'success': false, 'message': err.message });
             } else if (doc) {
                 doc.firstName = req.body.firstName?req.body.firstName:doc.firstName;
                 doc.lastName = req.body.lastName?req.body.lastName:doc.lastName;
@@ -66,7 +66,7 @@ module.exports = {
     deleteUser: function(req,res){
         userModel.findOne({_id:req.params.id}).exec(function(err,doc){
             if(err){
-                res.status(500).send(err.message);
+                res.status(500).json({'success': false, 'message': err.message });
             } else if (doc) {
                 doc.remove(function(err){
                     res.status(200).json({'success': true, 'message': 'User Deleted' });
