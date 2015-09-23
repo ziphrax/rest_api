@@ -15,5 +15,12 @@
     "jsonwebtoken": "^5.0.5",
     "mongoose": "^4.1.8",
     "morgan": "^1.6.1"
+  },
+  "devDependencies": {
+    "chai": "^3.3.0",
+    "expect": "^1.10.0",
+    "querystring": "^0.2.0",
+    "request": "^2.63.0",
+    "should": "^7.1.0"
   }
 }

@@ -15,13 +15,7 @@ var smtpServer = email.server.connect({
     host: config.smtpHost,
     ssl: config.smtpSSLEnabled
 });
-var mongoConnection = mongoose.connect(config.database,function(err){
-    if(err){
-        console.log(err);
-    } else {
-        console.log('connected to:' + config.database)
-    }
-});
+var mongoConnection = mongoose.connect(config.database);
 
 // Start the server
 app.set('port', process.env.PORT || 3000);
@@ -36,6 +30,13 @@ app.use('/public',express.static('public_assets'));
 app.use('/public/libs',express.static('bower_components'));
 app.use('/',routes);
 
-app.listen(app.get('port'),function(){
-    console.log('App listening on port: ' + app.get('port'));
-});
+if (!module.parent) {
+  app.listen(app.get('port'), function () {
+        console.log("Express server listening on port %d in %s mode",
+        app.get('port'),
+        app.settings.env
+      );
+    });
+}
+
+module.exports = app;
