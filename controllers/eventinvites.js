@@ -14,8 +14,8 @@ module.exports = {
       transporter.sendMail({
         from: 'sender@address',
         to: 'receiver@address',
-        subject: 'hello',
-        text: 'hello world!'
+        subject: 'New Event Invite!',
+        text: 'New Event Invite!'
       },function(err,message){
             if(err){
                 res.status(500).json({'success': false, data: err });
