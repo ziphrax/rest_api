@@ -35,7 +35,6 @@ describe( namespace + '/eventinvites' , function(){
         event_id: '5603038ec84f48b8255d0e3f',
         user_id: '560301e77f44ecb8257bb0ca'
       })
-      .expect(200)
       .expect(function(res){
           res.body.should.have.property('success',true);
           res.body.should.have.property('data');
@@ -45,6 +44,7 @@ describe( namespace + '/eventinvites' , function(){
           res.body.data[0].should.have.property('event_id');
           res.body.data[0].should.have.property('user_id');
       })
+      .expect(200)
       .end( done );
   });
 

@@ -1,13 +1,18 @@
 var friendModel = require('./../models/friend');
 var config = require('./../config');
 var nodemailer  = require("nodemailer");
-var smtpTransport = require('nodemailer-smtp-transport');
-
-var transporter = nodemailer.createTransport("SMTP",{
-   port: config.smtpPort,
-   secure: false,
-   ignoreTLS: true
- });
+var node_env = process.env.NODE_ENV || 'development';
+if(node_env == "development"){
+  var stubTransport = require('nodemailer-stub-transport');
+  var transporter = nodemailer.createTransport(stubTransport());
+} else {
+  var smtpTransport = require('nodemailer-smtp-transport');
+  var transporter = nodemailer.createTransport("SMTP",{
+     port: config.smtpPort,
+     secure: false,
+     ignoreTLS: true
+   });
+ }
 
 module.exports = {
     makeFriends: function(req,res){
@@ -17,8 +22,8 @@ module.exports = {
         subject: 'New Friends Request!',
         text: 'New Friends Request.'
       },function(err,message){
-          if(err){
-              res.status(500).json({'success': fal6se, data: err });
+          if(err && node_env != "development"){
+              res.status(500).json({'success': false, data: err });
           } else {
               var friends = new friendModel();
               friends.to_user_id = req.body.to_user_id;

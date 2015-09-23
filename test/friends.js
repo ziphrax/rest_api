@@ -47,7 +47,6 @@ describe(namespace + '/friends',function(){
         to_user_id: '5603038ec84f48b8255d0e3f',
         from_user_id: '560301e77f44ecb8257bb0ca'
       })
-      .expect(200)
       .expect(function(res){
           res.body.should.have.property('success',true);
           res.body.should.have.property('data');
@@ -57,6 +56,7 @@ describe(namespace + '/friends',function(){
           res.body.data[0].should.have.property('from_user_id');
           res.body.data[0].should.have.property('to_user_id');
       })
+      .expect(200)
       .end( done );
   });
 });

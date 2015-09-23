@@ -1,13 +1,20 @@
 var eventInviteModel = require('./../models/eventinvite');
 var config = require('./../config');
 var nodemailer  = require("nodemailer");
-var smtpTransport = require('nodemailer-smtp-transport');
 
-var transporter = nodemailer.createTransport("SMTP",{
-   port: config.smtpPort,
-   secure: false,
-   ignoreTLS: true
- });
+var node_env = process.env.NODE_ENV || 'development';
+
+if(node_env == "development"){
+  var stubTransport = require('nodemailer-stub-transport');
+  var transporter = nodemailer.createTransport(stubTransport());
+} else {
+  var smtpTransport = require('nodemailer-smtp-transport');
+  var transporter = nodemailer.createTransport("SMTP",{
+     port: config.smtpPort,
+     secure: false,
+     ignoreTLS: true
+   });
+ }
 
 module.exports = {
     sendInvite: function(req,res,next){
@@ -17,7 +24,7 @@ module.exports = {
         subject: 'New Event Invite!',
         text: 'New Event Invite!'
       },function(err,message){
-            if(err){
+            if(err && node_env != "development"){
                 res.status(500).json({'success': false, data: err });
             } else {
                 var invite = new eventInviteModel();
