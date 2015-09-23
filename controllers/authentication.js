@@ -7,12 +7,12 @@ module.exports = {
         User.findOne({name: req.body.name}).exec(function(err,user){
             if (err) throw err;
             if (!user) {
-              res.json({ success: false, message: 'Authentication failed.' });
+              res.status(401).json({ success: false, message: 'Authentication failed.' });
             } else if (user) {
 
               // check if password matches
               if (user.password != req.body.password) {
-                res.json({ success: false, message: 'Authentication failed.' });
+                res.status(401).json({ success: false, message: 'Authentication failed.' });
               } else {
 
                 // if user is found and password is right
@@ -22,7 +22,7 @@ module.exports = {
                 });
 
                 // return the information including token as JSON
-                res.json({
+                res.status(200).json({
                   success: true,
                   message: 'Enjoy your token!',
                   token: token
