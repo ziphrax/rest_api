@@ -33,11 +33,24 @@ app.use('/public/libs',express.static('bower_components'));
 app.use('/',routes);
 
 if (!module.parent) {
-  app.listen(app.get('port'), function () {
+  var server = app.listen(app.get('port'), function () {
         console.log("Express server listening on port %d in %s mode",
         app.get('port'),
         app.settings.env
       );
+    });
+    
+    process.on( 'SIGTERM', function () {
+       server.close(function () {
+         console.log( "Closed out remaining connections.");
+         // Close db connections, etc.
+       });
+
+       setTimeout( function () {
+         console.error("Could not close connections in time, forcefully shutting down");
+         process.exit(1);
+       }, 30*1000);
+
     });
 }
 
