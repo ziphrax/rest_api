@@ -24,7 +24,9 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 // use morgan to log requests to the console
-app.use(morgan('dev'));
+if (!module.parent) {
+    app.use(morgan('dev'));
+}
 
 app.use('/public',express.static('public_assets'));
 app.use('/public/libs',express.static('bower_components'));

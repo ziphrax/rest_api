@@ -1,13 +1,13 @@
 {
   "name": "tothefew",
   "version": "1.0.0",
-  "description": "",
+  "description": "a rest api, used for testing techniques",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "david jones",
+  "license": "MIT",
   "dependencies": {
     "body-parser": "^1.14.0",
     "emailjs": "^0.3.16",
@@ -19,7 +19,6 @@
   "devDependencies": {
     "chai": "^3.3.0",
     "expect": "^1.10.0",
-    "querystring": "^0.2.0",
     "request": "^2.63.0",
     "should": "^7.1.0",
     "supertest": "^1.1.0"
