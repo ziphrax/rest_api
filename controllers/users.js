@@ -13,6 +13,8 @@ module.exports = {
     newUser: function(req,res){
         var newUser = new userModel();
 
+        newUser.name = req.body.name;
+        newUser.password = req.body.password;
         newUser.firstName = req.body.firstName;
         newUser.lastName = req.body.lastName;
         newUser.EmailAddress = req.body.EmailAddress;

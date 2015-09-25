@@ -7,7 +7,6 @@ router.use(authenticator);
 
 router.route('/')
     .get(usersController.getUsers)
-    .post(usersController.newUser);
 
 router.route('/:id')
     .get(usersController.getUser)
