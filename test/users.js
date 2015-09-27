@@ -57,7 +57,8 @@ describe(namespace + '/users',function(){
         .end( done );
     });
 
-    it('POST /',function(done){
+    //cant do this anymore
+    /*it('POST /',function(done){
       request(app)
         .post(namespace + '/users/')
         .set('x-access-token',jwt)
@@ -84,7 +85,7 @@ describe(namespace + '/users',function(){
             res.body.data[0].should.have.property('_id');
         })
         .end( done );
-    });
+    });*/
 
     it('POST / without auth should error',function(done){
       request(app)

@@ -34,7 +34,7 @@ if (!module.parent) {
     process.on( 'SIGTERM', function () {
        server.close(function () {
          console.log( "Closed out remaining connections.");
-         // Close db connections, etc.
+         mongoose.disconnect();
        });
 
        setTimeout( function () {
