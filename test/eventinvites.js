@@ -25,14 +25,15 @@ describe( namespace + '/eventinvites' , function(){
     request(app)
       .post(namespace + '/eventinvites/send')
       .set('x-access-token',jwt)
+      .expect(200)
       .send({
         text : 'Yay, you have been invited to an event',
         from: 'develope@localhost.test',
         to: 'developer@localhost.test',
         cc : '',
         subject: 'New Event Invite',
-        event_id: '5603038ec84f48b8255d0e3f',
-        user_id: '560301e77f44ecb8257bb0ca'
+        event_id: '5603d855e630f7142933764b',
+        user_id: '56015ec68ff66340225e9b49'
       })
       .expect(function(res){
           res.body.should.have.property('success',true);

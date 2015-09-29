@@ -1,4 +1,5 @@
 var eventInviteModel = require('./../models/eventinvite');
+var eventModel = require('./../models/event');
 var config = require('./../config');
 var nodemailer  = require("nodemailer");
 
@@ -18,26 +19,38 @@ if(node_env == "development"){
 
 module.exports = {
     sendInvite: function(req,res,next){
-      transporter.sendMail({
-        from: 'sender@address',
-        to: 'receiver@address',
-        subject: 'New Event Invite!',
-        text: 'New Event Invite!'
-      },function(err,message){
-            if(err && node_env != "development"){
+        eventModel.findOne({_id:req.body.event_id,owner:req.decoded._id}).exec(function(err,doc){
+            if(err){                
                 res.status(500).json({'success': false, data: err });
+            } else if(doc){
+                if(doc.owner == req.decoded._id){
+                    transporter.sendMail({
+                      from: 'sender@address',
+                      to: 'receiver@address',
+                      subject: 'New Event Invite!',
+                      text: 'New Event Invite!'
+                    },function(err,message){
+                          if(err && node_env != "development"){
+                              res.status(500).json({'success': false, data: err });
+                          } else {
+                              var invite = new eventInviteModel();
+                              invite.event_id = req.body.event_id;
+                              invite.user_id = req.body.user_id;
+                              invite.sent = Date.now();
+                              invite.save(function(err){
+                                if(err){
+                                  res.status(500).json({'success': false, data: err });
+                                } else {
+                                  res.json({'success': true, data: [invite] });
+                                }
+                              });
+                          }
+                      });
+                } else {
+                    res.status(401).json({ success: false, message: 'Authentication failed.' });
+                }
             } else {
-                var invite = new eventInviteModel();
-                invite.event_id = req.body.event_id;
-                invite.user_id = req.body.user_id;
-                invite.sent = Date.now();
-                invite.save(function(err){
-                  if(err){
-                    res.status(500).json({'success': false, data: err });
-                  } else {
-                    res.json({'success': true, data: [invite] });
-                  }
-                });
+                res.status(404).json({'success': false, 'message': 'The requested resource does not exist' });
             }
         });
     }

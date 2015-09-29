@@ -50,7 +50,7 @@ describe(namespace + '/events',function(){
       .send({
         title : 'String',
         content: 'String',
-        owner: 'String',
+        owner: '56015ec68ff66340225e9b49',
         longitude : 0,
         lattitude: 0,
         address : 'String'
@@ -84,12 +84,11 @@ describe(namespace + '/events',function(){
 
   it('POST /:ID',function(done){
     request(app)
-      .post(namespace + '/events/5603046e421ed8b8254dfcb5')
+      .post(namespace + '/events/5603d855e630f7142933764c')
       .set('x-access-token',jwt)
       .send({
         title : 'String',
         content: 'String',
-        owner: 'String',
         longitude : 0,
         lattitude: 0,
         address : 'String'
@@ -102,7 +101,7 @@ describe(namespace + '/events',function(){
           assert.equal(res.body.data.length,1);
           res.body.data[0].should.have.property('title','String');
           res.body.data[0].should.have.property('content','String');
-          res.body.data[0].should.have.property('owner','String');
+          res.body.data[0].should.have.property('owner','56015ec68ff66340225e9b49');
           res.body.data[0].should.have.property('longitude',0);
           res.body.data[0].should.have.property('lattitude',0);
           res.body.data[0].should.have.property('address','String');

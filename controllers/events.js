@@ -16,8 +16,8 @@ module.exports = {
         newEvent.title = req.body.title;
         newEvent.content = req.body.content;
         newEvent.status = req.body.status;
-    	  newEvent.created =  Date.now();
-        newEvent.owner = req.body.owner;
+    	newEvent.created =  Date.now();
+        newEvent.owner = req.decoded._id;
         newEvent.longitude = req.body.longitude;
         newEvent.lattitude = req.body.lattitude;
         newEvent.address = req.body.address;
@@ -42,18 +42,23 @@ module.exports = {
             if(err){
                 res.status(500).json({'success': false, 'message': err.message });
             } else if (doc) {
-                doc.title = req.body.title?req.body.title:doc.title;
-                doc.content = req.body.content?req.body.content:doc.content;
-                doc.status = req.body.status?req.body.status:doc.status;
-                doc.updated =  Date.now();
-                doc.owner = req.body.owner?req.body.owner:doc.owner;
-                doc.longitude = req.body.longitude?req.body.longitude:doc.longitude;
-                doc.lattitude = req.body.lattitude?req.body.lattitude:doc.lattitude;
-                doc.address = req.body.address?req.body.address:doc.address;
+                if(doc.owner == req.decoded._id){
+                    doc.title = req.body.title?req.body.title:doc.title;
+                    doc.content = req.body.content?req.body.content:doc.content;
+                    doc.status = req.body.status?req.body.status:doc.status;
+                    doc.updated =  Date.now();
+                    doc.longitude = req.body.longitude?req.body.longitude:doc.longitude;
+                    doc.lattitude = req.body.lattitude?req.body.lattitude:doc.lattitude;
+                    doc.address = req.body.address?req.body.address:doc.address;
 
-                doc.save(function(){
-                    res.json({'success': true, data: [doc] });
-                });
+                    doc.save(function(){
+                        res.json({'success': true, data: [doc] });
+                    });
+                } else {
+                    res.status(401).json({ success: false, message: 'Authentication failed.' });
+                }
+
+
             } else {
                 res.status(404).json({'success': false, 'message': 'The requested resource does not exist' });
             }
@@ -64,9 +69,13 @@ module.exports = {
             if(err){
                 res.status(500).json({'success': false, 'message': err.message });
             } else if (doc) {
-                doc.remove(function(err){
-                    res.status(200).json({'success': true, 'message': 'Event Deleted' });
-                });
+                if(doc.owner == req.decoded._id){
+                    doc.remove(function(err){
+                        res.status(200).json({'success': true, 'message': 'Event Deleted' });
+                    });
+                } else {
+                    res.status(401).json({ success: false, message: 'Authentication failed.' });
+                }
             } else {
                 res.status(404).json({'success': false, 'message': 'The requested resource does not exist' });
             }

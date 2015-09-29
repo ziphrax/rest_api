@@ -33,6 +33,7 @@ describe(namespace + '/friends',function(){
       })
       .end( done );
   });
+
   it('POST /friends/makeFriends should send friends request',function(done){
     this.timeout(10000);
     request(app)
@@ -44,9 +45,10 @@ describe(namespace + '/friends',function(){
         to: 'developer@localhost.test',
         cc : '',
         subject: 'New Event Invite',
-        to_user_id: '5603038ec84f48b8255d0e3f',
+        to_user_id: '56015ec68ff66340225e9b49',
         from_user_id: '560301e77f44ecb8257bb0ca'
       })
+      .expect(200)
       .expect(function(res){
           res.body.should.have.property('success',true);
           res.body.should.have.property('data');
@@ -56,7 +58,6 @@ describe(namespace + '/friends',function(){
           res.body.data[0].should.have.property('from_user_id');
           res.body.data[0].should.have.property('to_user_id');
       })
-      .expect(200)
       .end( done );
   });
 });
