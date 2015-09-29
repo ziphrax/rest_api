@@ -2,7 +2,7 @@ var userModel = require('./../models/user');
 
 module.exports = {
     getUsers: function(req,res){
-        userModel.find({}).exec(function(err,docs){
+        userModel.find({},'name firstName lastName EmailAddress DateOfBirth status created address phone_tel phone_mob phone_work').exec(function(err,docs){
             if(err){
                 res.status(500).json({'success': false, 'message': err.message });
             } else {
@@ -31,7 +31,7 @@ module.exports = {
         });
     },
     getUser: function(req,res){
-        userModel.findOne({_id:req.params.id}).exec(function(err,doc){
+        userModel.findOne({_id:req.params.id},'name firstName lastName EmailAddress DateOfBirth status created address phone_tel phone_mob phone_work').exec(function(err,doc){
             if(err){
                 res.status(500).json({'success': false, 'message': err.message });
             } else if (doc) {
@@ -42,7 +42,7 @@ module.exports = {
         });
     },
     updateUser: function(req,res){
-        userModel.findOne({_id:req.params.id}).exec(function(err,doc){
+        userModel.findOne({_id:req.params.id},'name firstName lastName EmailAddress DateOfBirth status created address phone_tel phone_mob phone_work').exec(function(err,doc){
             if(err){
                 res.status(500).json({'success': false, 'message': err.message });
             } else if (doc) {
@@ -66,7 +66,7 @@ module.exports = {
         });
     },
     deleteUser: function(req,res){
-        userModel.findOne({_id:req.params.id}).exec(function(err,doc){
+        userModel.findOne({_id:req.params.id} ,'name firstName lastName EmailAddress DateOfBirth status created address phone_tel phone_mob phone_work').exec(function(err,doc){
             if(err){
                 res.status(500).json({'success': false, 'message': err.message });
             } else if (doc) {

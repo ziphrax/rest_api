@@ -57,36 +57,6 @@ describe(namespace + '/users',function(){
         .end( done );
     });
 
-    //cant do this anymore
-    /*it('POST /',function(done){
-      request(app)
-        .post(namespace + '/users/')
-        .set('x-access-token',jwt)
-        .send({
-          name: 'User2',
-        	firstName: 'String',
-        	lastName: 'String',
-        	EmailAddress: 'String',
-        	DateOfBirth: Date.now(),
-        	owner: 'String',
-        	address : 'String',
-        	phone_tel: 'String',
-        	phone_mob: 'String',
-        	phone_work: 'String',
-        	admin: false,
-        	password: 'password'
-        })
-        .expect(200)
-        .expect(function(res){
-            res.body.should.have.property('success',true);
-            res.body.should.have.property('data');
-            res.body.data.should.be.instanceOf(Array);
-            assert.equal(res.body.data.length,1);
-            res.body.data[0].should.have.property('_id');
-        })
-        .end( done );
-    });*/
-
     it('POST / without auth should error',function(done){
       request(app)
         .post(namespace + '/users/')
@@ -129,7 +99,6 @@ describe(namespace + '/users',function(){
             res.body.data[0].should.have.property('firstName','String1');
             res.body.data[0].should.have.property('lastName','String1');
             res.body.data[0].should.have.property('EmailAddress','String1');
-            res.body.data[0].should.have.property('password','Admin');
         })
         .end( done );
     });

@@ -4,7 +4,7 @@ var jwt = require('jsonwebtoken');
 
 module.exports = {
     authenticate: function(req,res,next){
-        User.findOne({name: req.body.name}).exec(function(err,user){
+        User.findOne({name: req.body.name},'name password EmailAddress admin').exec(function(err,user){
             if (err) throw err;
             if (!user) {
               res.status(401).json({ success: false, message: 'Authentication failed.' });
