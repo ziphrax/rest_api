@@ -22,7 +22,6 @@ describe( namespace + '/eventinvites' , function(){
   });
 
   it('should send event invites',function(done){
-    this.timeout(10000);
     request(app)
       .post(namespace + '/eventinvites/send')
       .set('x-access-token',jwt)
