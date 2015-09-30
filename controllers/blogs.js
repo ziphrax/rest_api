@@ -23,9 +23,10 @@ module.exports = {
     newBlog: function(req,res){
         var newBlog = new blogModel();
 
-        newBlog.subject = req.body.title;
-        newBlog.content = req.body.content;
-        newBlog.status = req.body.status;
+        for(eachkey in req.body){
+            newBlog[eachkey] = req.body[eachkey];
+        }
+
     	newBlog.created =  Date.now();
         newBlog.owner = req.decoded._id; //the users id
 
@@ -50,9 +51,10 @@ module.exports = {
                 res.status(500).json({'success': false, 'message': err.message });
             } else if (doc) {
                 if(doc.owner == req.decoded._id) {
-                    doc.subject = req.body.subject?req.body.subject:doc.subject;
-                    doc.content = req.body.content?req.body.content:doc.content;
-                    doc.status = req.body.status?req.body.status:doc.status;
+                    for(eachkey in req.body){
+                        doc[eachkey] = req.body[eachkey]?req.body[eachkey]:doc.[eachkey];
+                    }
+
                     doc.updated =  Date.now();
 
                     doc.save(function(){

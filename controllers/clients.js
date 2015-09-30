@@ -13,6 +13,10 @@ module.exports = {
     newClient: function(req,res){
         var newClient = new clientModel();
 
+        for(eachkey in req.body){
+            newClient[eachkey] = req.body[eachkey];
+        }
+
         newClient.name = req.body.name;
         newClient.owner = req.decoded._id;
 
@@ -37,6 +41,11 @@ module.exports = {
                 res.status(500).json({'success': false, 'message': err.message });
             } else if (doc) {
                 if(doc.owner == req.decoded._id) {
+
+                    for(eachkey in req.body){
+                        doc[eachkey] = req.body[eachkey]?req.body[eachkey]:doc.[eachkey];
+                    }
+                    
                     doc.name = req.body.name?req.body.name:doc.name;
 
                     doc.save(function(){

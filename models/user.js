@@ -16,6 +16,6 @@ var UserSchema = new mongoose.Schema({
 	phone_work: String,
 	admin: Boolean,
 	password: String
-});
+},{strict: false});
 
 module.exports = mongoose.model('User',UserSchema);

@@ -13,6 +13,10 @@ module.exports = {
     newProgramme: function(req,res){
         var newProgramme = new programmeModel();
 
+        for(eachkey in req.body){
+            newProgramme[eachkey] = req.body[eachkey];
+        }
+
         newProgramme.name = req.body.name;
         newProgramme.owner = req.decoded._id;
 
@@ -37,7 +41,9 @@ module.exports = {
                 res.status(500).json({'success': false, 'message': err.message });
             } else if (doc) {
                 if(doc.owner == req.decoded._id) {
-                    doc.name = req.body.name?req.body.name:doc.name;
+                    for(eachkey in req.body){
+                        doc[eachkey] = req.body[eachkey]?req.body[eachkey]:doc.[eachkey];
+                    }
 
                     doc.save(function(){
                         res.json({'success': true, data: [doc] });

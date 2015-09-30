@@ -13,6 +13,10 @@ module.exports = {
     newReport: function(req,res){
         var newReport = new reportModel();
 
+        for(eachkey in req.body){
+            newReport[eachkey] = req.body[eachkey];
+        }
+
         newReport.name = req.body.name;
         newReport.owner = req.decoded._id;
 
@@ -37,7 +41,9 @@ module.exports = {
                 res.status(500).json({'success': false, 'message': err.message });
             } else if (doc) {
                 if(doc.owner == req.decoded._id) {
-                    doc.name = req.body.name?req.body.name:doc.name;
+                    for(eachkey in req.body){
+                        doc[eachkey] = req.body[eachkey]?req.body[eachkey]:doc.[eachkey];
+                    }
 
                     doc.save(function(){
                         res.json({'success': true, data: [doc] });
