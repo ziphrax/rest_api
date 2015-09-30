@@ -35,7 +35,7 @@ describe(namespace + '/questions',function(){
   });
   it('GET /:id should return a specific question',function(done){
       request(app)
-        .get(namespace + '/questions/560a7ac5cb547acc23df677f')
+        .get(namespace + '/questions/560bdb481bf9289419d43ff6')
         .set('x-access-token',jwt)
         .expect('Content-Type',/json/)
         .expect(200)
@@ -67,7 +67,7 @@ describe(namespace + '/questions',function(){
   });
   it('POST /:id should update a question',function(done){
     request(app)
-      .post(namespace + '/questions/560a7ac5cb547acc23df677f')
+      .post(namespace + '/questions/560bdb481bf9289419d43ff6')
       .set('x-access-token',jwt)
       .send({
           name: 'name'

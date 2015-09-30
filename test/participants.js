@@ -35,7 +35,7 @@ describe(namespace + '/participants',function(){
   });
   it('GET /:id should return a specific participant',function(done){
       request(app)
-        .get(namespace + '/participants/560a7ac5cb547acc23df677f')
+        .get(namespace + '/participants/560bdb481bf9289419d43ff4')
         .set('x-access-token',jwt)
         .expect('Content-Type',/json/)
         .expect(200)
@@ -67,7 +67,7 @@ describe(namespace + '/participants',function(){
   });
   it('POST /:id should update a participant',function(done){
     request(app)
-      .post(namespace + '/participants/560a7ac5cb547acc23df677f')
+      .post(namespace + '/participants/560bdb481bf9289419d43ff4')
       .set('x-access-token',jwt)
       .send({
           name: 'name'

@@ -35,7 +35,7 @@ describe(namespace + '/clients',function(){
   });
   it('GET /:id should return a specific client',function(done){
       request(app)
-        .get(namespace + '/clients/560a7ac5cb547acc23df677f')
+        .get(namespace + '/clients/560bdb471bf9289419d43fef')
         .set('x-access-token',jwt)
         .expect('Content-Type',/json/)
         .expect(200)
@@ -67,7 +67,7 @@ describe(namespace + '/clients',function(){
   });
   it('POST /:id should update a client',function(done){
     request(app)
-      .post(namespace + '/clients/560a7ac5cb547acc23df677f')
+      .post(namespace + '/clients/560bdb471bf9289419d43fef')
       .set('x-access-token',jwt)
       .send({
           name: 'name'

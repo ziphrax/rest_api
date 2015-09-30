@@ -35,7 +35,7 @@ describe(namespace + '/iterations',function(){
   });
   it('GET /:id should return a specific iteration',function(done){
       request(app)
-        .get(namespace + '/iterations/560a7ac5cb547acc23df677f')
+        .get(namespace + '/iterations/560bdb481bf9289419d43ff3')
         .set('x-access-token',jwt)
         .expect('Content-Type',/json/)
         .expect(200)
@@ -67,7 +67,7 @@ describe(namespace + '/iterations',function(){
   });
   it('POST /:id should update a iteration',function(done){
     request(app)
-      .post(namespace + '/iterations/560a7ac5cb547acc23df677f')
+      .post(namespace + '/iterations/560bdb481bf9289419d43ff3')
       .set('x-access-token',jwt)
       .send({
           name: 'name'

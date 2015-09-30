@@ -35,7 +35,7 @@ describe(namespace + '/reports',function(){
   });
   it('GET /:id should return a specific report',function(done){
       request(app)
-        .get(namespace + '/reports/560a7ac5cb547acc23df677f')
+        .get(namespace + '/reports/560bdb481bf9289419d43ff7')
         .set('x-access-token',jwt)
         .expect('Content-Type',/json/)
         .expect(200)
@@ -67,7 +67,7 @@ describe(namespace + '/reports',function(){
   });
   it('POST /:id should update a report',function(done){
     request(app)
-      .post(namespace + '/reports/560a7ac5cb547acc23df677f')
+      .post(namespace + '/reports/560bdb481bf9289419d43ff7')
       .set('x-access-token',jwt)
       .send({
           name: 'name'
