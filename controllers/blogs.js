@@ -51,8 +51,9 @@ module.exports = {
                 res.status(500).json({'success': false, 'message': err.message });
             } else if (doc) {
                 if(doc.owner == req.decoded._id) {
+
                     for(eachkey in req.body){
-                        doc[eachkey] = req.body[eachkey]?req.body[eachkey]:doc.[eachkey];
+                        doc[eachkey] = req.body[eachkey]?req.body[eachkey]:doc[eachkey];
                     }
 
                     doc.updated =  Date.now();

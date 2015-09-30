@@ -42,9 +42,9 @@ module.exports = {
             } else if (doc) {
 
                 for(eachkey in req.body){
-                    doc[eachkey] = req.body[eachkey]?req.body[eachkey]:doc.[eachkey];
+                    doc[eachkey] = req.body[eachkey]?req.body[eachkey]:doc[eachkey];
                 }
-                
+
                 doc.status = req.body.status?req.body.status:doc.status;
                 doc.updated =  Date.now();
 
