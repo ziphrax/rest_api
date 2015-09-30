@@ -7,7 +7,7 @@ router.use(authenticator);
 
 router.route('/')
     .get(reportsController.getReports)
-    .post(reportssController.newReport);
+    .post(reportsController.newReport);
 
 router.route('/:id')
     .get(reportsController.getReport)
