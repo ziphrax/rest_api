@@ -20,9 +20,67 @@ describe(namespace + '/participants',function(){
         });
   });
 
-  it('GET / should return an array of participants');
-  it('GET /:id should return a specific participant');
-  it('POST / should create a new participant');
-  it('POST /:id should update a participant');
+  it('GET / should return an array of participants',function(done){
+      request(app)
+        .get(namespace + '/participants')
+        .set('x-access-token',jwt)
+        .expect('Content-Type',/json/)
+        .expect(200)
+        .expect(function(res){
+            res.body.should.have.property('success',true);
+            res.body.should.have.property('data');
+            res.body.data.should.be.instanceOf(Array);
+        })
+        .end( done );
+  });
+  it('GET /:id should return a specific participant',function(done){
+      request(app)
+        .get(namespace + '/participants/560a7ac5cb547acc23df677f')
+        .set('x-access-token',jwt)
+        .expect('Content-Type',/json/)
+        .expect(200)
+        .expect(function(res){
+            res.body.should.have.property('success',true);
+            res.body.should.have.property('data');
+            res.body.data.should.be.instanceOf(Array);
+            assert.equal(res.body.data.length,1);
+        })
+        .end( done );
+  });
+  it('POST / should create a new participant',function(done){
+    request(app)
+      .post(namespace + '/participants')
+      .set('x-access-token',jwt)
+      .send({
+          owner: '56015ec68ff66340225e9b49',
+          name: 'name'
+      })
+      .expect(200)
+      .expect(function(res){
+          res.body.should.have.property('success',true);
+          res.body.should.have.property('data');
+          res.body.data.should.be.instanceOf(Array);
+          assert.equal(res.body.data.length,1);
+          res.body.data[0].should.have.property('_id');
+      })
+      .end( done );
+  });
+  it('POST /:id should update a participant',function(done){
+    request(app)
+      .post(namespace + '/participants/560a7ac5cb547acc23df677f')
+      .set('x-access-token',jwt)
+      .send({
+          name: 'name'
+      })
+      .expect(200)
+      .expect(function(res){
+          res.body.should.have.property('success',true);
+          res.body.should.have.property('data');
+          res.body.data.should.be.instanceOf(Array);
+          assert.equal(res.body.data.length,1);
+          res.body.data[0].should.have.property('_id');
+      })
+      .end( done );
+  });
 
 });
