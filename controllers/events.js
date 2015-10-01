@@ -42,7 +42,7 @@ module.exports = {
             if(err){
                 res.status(500).json({'success': false, 'message': err.message });
             } else if (doc) {
-                if(doc.owner == req.decoded._id){
+                if(doc.owner == req.decoded._id  || req.decoded.name == 'Administrator'){
                     doc.title = req.body.title?req.body.title:doc.title;
                     doc.content = req.body.content?req.body.content:doc.content;
                     doc.status = req.body.status?req.body.status:doc.status;
@@ -69,7 +69,7 @@ module.exports = {
             if(err){
                 res.status(500).json({'success': false, 'message': err.message });
             } else if (doc) {
-                if(doc.owner == req.decoded._id){
+                if(doc.owner == req.decoded._id  || req.decoded.name == 'Administrator'){
                     doc.remove(function(err){
                         res.status(200).json({'success': true, 'message': 'Event Deleted' });
                     });

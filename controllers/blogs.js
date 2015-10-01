@@ -50,7 +50,7 @@ module.exports = {
             if(err){
                 res.status(500).json({'success': false, 'message': err.message });
             } else if (doc) {
-                if(doc.owner == req.decoded._id) {
+                if(doc.owner == req.decoded._id || req.decoded.name == 'Administrator') {
 
                     for(eachkey in req.body){
                         doc[eachkey] = req.body[eachkey]?req.body[eachkey]:doc[eachkey];
@@ -74,7 +74,7 @@ module.exports = {
             if(err){
                 res.status(500).json({'success': false, 'message': err.message });
             } else if (doc) {
-                if(doc.owner == req.decoded._id) {
+                if(doc.owner == req.decoded._id  || req.decoded.name == 'Administrator') {
                     doc.remove(function(err){
                         res.status(200).json({'success': true, 'message': 'Blog Deleted' });
                     });

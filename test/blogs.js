@@ -79,7 +79,6 @@ describe(namespace + '/blogs',function(){
       .post(namespace + '/blogs')
       .set('x-access-token',jwt)
       .send({
-          owner: '56015ec68ff66340225e9b49',
           subject: 'blog subject',
           content: 'blog content'
       })
@@ -118,7 +117,6 @@ describe(namespace + '/blogs',function(){
       .post(namespace + '/blogs/560a7ac5cb547acc23df677f/comments')
       .set('x-access-token',jwt)
       .send({
-          owner: '56015ec68ff66340225e9b49',
           subject: 'comment subject',
           content: 'comment content'
       })

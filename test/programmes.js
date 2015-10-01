@@ -52,7 +52,6 @@ describe(namespace + '/programmes',function(){
       .post(namespace + '/programmes')
       .set('x-access-token',jwt)
       .send({
-          owner: '56015ec68ff66340225e9b49',
           name: 'name'
       })
       .expect(200)
