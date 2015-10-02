@@ -1,10 +1,11 @@
-var app = angular.module('restAPP',[]);
+var app = angular.module('restAPP',['ngResource','angularMoment']);
 var namespace = '/api/v1';
 
 app.controller('UserCtrl',function($scope,$http){
     $scope.name="";
     $scope.password="";
     $scope.token="";
+    $scope.loggedInTime="";
 
     $scope.isAuthenticated = function(){
         return $scope.token.length > 0;
@@ -12,7 +13,10 @@ app.controller('UserCtrl',function($scope,$http){
 
     $scope.login = function(){
         REST_API.authenticate($scope,$http,function(res){
-            if( res.success ) { $scope.token = res.token; }
+            if( res.success ) {
+                $scope.token = res.token;
+                $scope.loggedInTime = new Date();
+            }
             else { app_alert(res.message); }
         });
     };
