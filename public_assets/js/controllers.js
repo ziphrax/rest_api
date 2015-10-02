@@ -2,6 +2,7 @@ angular.module('restAPP.controllers',[]).controller('UserCtrl', function ($scope
 
     $scope.user = {name: '', password: ''};
     $scope.loggedInTime="";
+    $window.sessionStorage.token = '';
 
     $scope.isAuthenticated = function(){
         return $window.sessionStorage.token.length > 0;
@@ -18,14 +19,13 @@ angular.module('restAPP.controllers',[]).controller('UserCtrl', function ($scope
             .success(function (data, status, headers, config) {
                 $window.sessionStorage.token = data.token;
                 $scope.loggedInTime = new Date();
-                $scope.message = 'Welcome';
             })
             .error(function (data, status, headers, config) {
                 // Erase the token if the user fails to log in
                 delete $window.sessionStorage.token;
             });
     };
-    
+
     $scope.register = function () {
         alert('not yet implemented');
     };
