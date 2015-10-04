@@ -1,0 +1,16 @@
+<div class="row">
+    <div class="col-xs-12 col-sm-12">
+        <div ng-controller="LoginController">
+            <div ng-show="isAuthenticated()">
+              <div class="alert alert-danger">
+                Are you sure you wish to logout?
+                <div class="btn-group  pull-right">
+                  <button ng-click="logout()" class="btn btn-danger btn-sm" style="margin-top:-4px;">Logout</button>
+                  <button ng-click="dashboard()" class="btn btn-default btn-sm" style="margin-top:-4px;">Cancel</button>
+                </div>
+                <div class="clear"></div>
+              </div>
+            </div>
+        </div>
+    </div>
+</div>

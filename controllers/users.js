@@ -13,18 +13,12 @@ module.exports = {
     newUser: function(req,res){
         var newUser = new userModel();
 
-        newUser.name = req.body.name;
-        newUser.password = req.body.password;
-        newUser.firstName = req.body.firstName;
-        newUser.lastName = req.body.lastName;
-        newUser.EmailAddress = req.body.EmailAddress;
-        newUser.DateOfBirth = req.body.DateOfBirth;
+        for(eachkey in req.body){
+            newUser[eachkey] = req.body[eachkey];
+        }
+
         newUser.status = 'New';
         newUser.created =  Date.now();
-        newUser.address = req.body.address;
-        newUser.phone_tel = req.body.phone_tel;
-        newUser.phone_mob = req.body.phone_mob;
-        newUser.phone_work = req.body.phone_work;
 
         newUser.save(function(){
             res.json({'success': true, data: [newUser] });
@@ -46,16 +40,14 @@ module.exports = {
             if(err){
                 res.status(500).json({'success': false, 'message': err.message });
             } else if (doc) {
-                doc.firstName = req.body.firstName?req.body.firstName:doc.firstName;
-                doc.lastName = req.body.lastName?req.body.lastName:doc.lastName;
-                doc.EmailAddress = req.body.EmailAddress?req.body.EmailAddress:doc.EmailAddress;
-                doc.DateOfBirth = req.body.DateOfBirth?req.body.DateOfBirth:doc.DateOfBirth;
+
+                for(eachkey in req.body){
+                    doc[eachkey] = req.body[eachkey]?req.body[eachkey]:doc[eachkey];
+                }
+
                 doc.status = req.body.status?req.body.status:doc.status;
                 doc.updated =  Date.now();
-                doc.address = req.body.address?req.body.address:doc.address;
-                doc.phone_tel = req.body.phone_tel?req.body.phone_tel:doc.phone_tel;
-                doc.phone_mob = req.body.phone_mob?req.body.phone_mob:doc.phone_mob;
-                doc.phone_work = req.body.phone_work?req.body.phone_work:doc.phone_work;
+
 
                 doc.save(function(){
                     res.json({'success': true, data: [doc] });

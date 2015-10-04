@@ -1,0 +1,7 @@
+[date-picker] {
+  background-color: #333;
+}
+[date-picker] span,
+[date-picker] div {
+  background-color: #fff;
+}

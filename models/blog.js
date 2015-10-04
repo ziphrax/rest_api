@@ -7,6 +7,6 @@ var BlogSchema = new mongoose.Schema({
     status: String,
     created: Date,
     updated: Date
-});
+},{strict: false});
 
 module.exports = mongoose.model('Blog',BlogSchema);

@@ -10,6 +10,6 @@ var EventSchema = new mongoose.Schema({
 	longitude : Number,
 	lattitude: Number,
 	address : String
-});
+},{strict: false});
 
 module.exports = mongoose.model('Event',EventSchema);

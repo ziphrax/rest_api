@@ -1,0 +1,32 @@
+<div class="row">
+  <div class="col-xs-12">
+    <h1>Details</h1>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-xs-12">
+    <form>
+      <div class="form-group">
+        <label for="clientName">Client Name</label>
+        <input type="text" name="clientName" ng-model="clientDetail.name" class="form-control"></input>
+      </div>
+      <div class="form-group">
+        <label for="clientName">Date</label>
+        <input type="datetime" auto-close="true" date-time view="date" min-view="date" ng-model="clientDetail.date" class="form-control">
+      </div>
+      <div class="form-group">
+        <label for="clientName">State</label>
+        <select ng-model="clientDetail.state" class="form-control">
+          <option value="Active">Active</option>
+          <option value="Archived">Archived</option>
+          <option value="">Not Set</option>
+        </select>
+      </div>
+      <div class="btn-group">
+        <button type="submit" class="btn btn-success" ng-click="save()"><i class="fa fa-floppy-o"></i> Save</button>
+        <button type="submit" class="btn btn-danger" ng-click="cancel()"><i class="fa fa-ban"></i> Cancel</button>
+      </div>
+    </form>
+  </div>
+</div>

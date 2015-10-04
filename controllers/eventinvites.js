@@ -19,11 +19,11 @@ if(node_env == "development"){
 
 module.exports = {
     sendInvite: function(req,res,next){
-        eventModel.findOne({_id:req.body.event_id,owner:req.decoded._id}).exec(function(err,doc){
-            if(err){                
+        eventModel.findOne({_id:req.body.event_id}).exec(function(err,doc){
+            if(err){
                 res.status(500).json({'success': false, data: err });
             } else if(doc){
-                if(doc.owner == req.decoded._id){
+                if(doc.owner == req.decoded._id  || req.decoded.name == 'Administrator'){
                     transporter.sendMail({
                       from: 'sender@address',
                       to: 'receiver@address',

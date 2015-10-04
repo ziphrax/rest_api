@@ -1,0 +1,5 @@
+<ul class="list-group">
+  <li class="list-group-item" ng-repeat="client in clients">
+    <a ui-sref="clients.detail({clientsId:client._id})">{{ client.name }}</a>
+  </li>
+</ul>

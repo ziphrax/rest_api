@@ -1,0 +1,49 @@
+<div class="row">
+    <div class="col-xs-12 col-sm-12">
+        <div ng-controller="LoginController">
+            <div class="well" ng-hide="isAuthenticated()">
+                <form class="form">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <legend>Login</legend>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="form-group">
+                                <input ng-model="user.name" type="text" name="name" placeholder="Username" autocomplete="off" class="form-control"/>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="form-group">
+                                <input ng-model="user.password" type="password" name="password" placeholder="Password" autocomplete="off" class="form-control"/>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="form-group pull-right">
+                                <div class="btn-group">
+                                    <input ng-click="login()" type="submit" value="Login" class="btn btn-success"/>
+                                    <input ng-click="register()" type="submit" value="Register" class="btn btn-default"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+            <div class="well" ng-show="isAuthenticated()">
+                <div class="alert alert-success">Logged in <span am-time-ago="loggedInTime"></span>
+                    <button ng-click="logout()" class="btn btn-success btn-sm pull-right" style="margin-top:-4px;">Logout</button>
+                    <div class="clear"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

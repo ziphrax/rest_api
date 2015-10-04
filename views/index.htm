@@ -1,71 +1,56 @@
 <!Doctype HTML>
-<html ng-app="restAPP">
+<html ng-app="myApp">
     <head>
         <title>To The Few</title>
         <link rel="stylesheet" href="/public/libs/bootstrap/dist/css/bootstrap.min.css">
+        <link rel="stylesheet" href="/public/libs/bootstrap/dist/css/bootstrap-theme.min.css">
+        <link rel="stylesheet" href="/public/libs/angular-datepicker/dist/angular-datepicker.min.css">
+        <link rel="stylesheet" href="/public/libs/font-awesome/css/font-awesome.min.css">
+        <link rel="stylesheet" href="/public/css/app.css">
     </head>
     <body>
-        <div class="container">
+        <div class="container-fluid">
 
-            <div class="row">
-                <div class="col-xs-12">
-                    <h1>REST Application</h1>
-                    <h2>The api is hosted at http://localhost/api/v1/</h2>
-                </div>
-            </div>
+          <div class="row">
+              <div class="col-xs-12 col-sm-12">
+                  <div ng-controller="LoginController">
+                    <span>
+                      <a ui-sref="home">Home</a>
+                    </span>
+                    <span>
+                      <a ui-sref="state2">State 2</a>
+                    </span>
+                    <span ng-hide="isAuthenticated()">
+                      <a ui-sref="login">Login</a>
+                    </span>
+                    <span ng-show="isAuthenticated()">
+                      <a ui-sref="clients.list">Clients</a>
+                      <a ui-sref="logout">Logout</a>
+                    </span>
 
-            <div ng-controller="UserCtrl" >
-                <div class="row">
-                    <div class="well" ng-hide="isAuthenticated()">
-                        <form class="form">
-                            <h3>Login / Register</h3>
+                  </div>
+              </div>
+          </div>
 
-                            <div class="form-group">
-                                <label for="name">Name</label>
-                                <input type="text" name="name" ng-model="name" class="form-control">
-                            </div>
+          <div class="row">
+              <div class="col-xs-12 col-sm-12">
+                <div ui-view></div>
+              </div>
+          </div>
 
-                            <div class="form-group">
-                                <label for="password">Password</label>
-                                <input type="password" name="password" ng-model="password" class="form-control">
-                            </div>
-
-                            <div class="form-group">
-                                <div class="btn-group">
-                                    <button ng-click="login()" class="btn btn-success">Login</button>
-                                    <button ng-click="register()" class="btn btn-primary">Register</button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-
-                    <div class="row" ng-show="isAuthenticated()">
-                        <div class="col-xs-12">
-                            <div class="alert alert-success"><strong>Success:</strong> Logged in.
-                                <button ng-click="logout()" class="btn btn-success btn-sm pull-right" style="margin-top:-4px;">Logout</button>
-                                <div class="clear"></div>
-                            </div>
-
-                        </div>
-                    </div>
-
-                    <div class="row" ng-show="isAuthenticated()">
-
-                    </div>
-
-
-                </div>
-            </div>
 
         </div>
-
-
 
         <script type="text/javascript" src="/public/libs/jquery/dist/jquery.min.js"></script>
         <script type="text/javascript" src="/public/libs/bootstrap/dist/js/bootstrap.min.js"></script>
         <script type="text/javascript" src="/public/libs/moment/moment.js"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script>
-        <script type="text/javascript" src="/public/api.js"></script>
-        <script type="text/javascript" src="/public/main.js"></script>
+        <script type="text/javascript" src="/public/libs/angular/angular.min.js"></script>
+        <script type="text/javascript" src="/public/libs/angular-moment/angular-moment.min.js"></script>
+        <script type="text/javascript" src="/public/libs/angular-resource/angular-resource.min.js"></script>
+        <script type="text/javascript" src="/public/libs/angular-ui-router/release/angular-ui-router.min.js"></script>
+        <script type="text/javascript" src="/public/libs/angular-datepicker/dist/angular-datepicker.min.js"></script>
+        <script type="text/javascript" src="/public/js/app.js"></script>
+        <script type="text/javascript" src="/public/js/services.js"></script>
+        <script type="text/javascript" src="/public/js/controllers.js"></script>
     </body>
 </html>
