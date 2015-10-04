@@ -2,7 +2,7 @@ var clientModel = require('./../models/client');
 
 module.exports = {
     getClients: function(req,res){
-        clientModel.find({}).sort('-date').exec(function(err,docs){
+        clientModel.find({}).sort('-date').limit(100).exec(function(err,docs){
             if(err){
                 res.status(500).json({'success': false, 'message': err.message });
             } else {

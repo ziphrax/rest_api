@@ -1,8 +1,9 @@
-var myApp = angular.module('myApp', ['ui.router','ngResource','angularMoment']);
+var myApp = angular.module('myApp', ['ui.router','ngResource','angularMoment','authService']);
 myApp.config(function($stateProvider, $urlRouterProvider, $httpProvider) {
   //
   // For any unmatched url, redirect to /state1
   $urlRouterProvider.otherwise("/home");
+  $httpProvider.interceptors.push('AuthInterceptor');
   // Now set up the states
   $stateProvider
     .state('login', {
