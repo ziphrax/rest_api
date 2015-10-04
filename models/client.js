@@ -2,7 +2,9 @@ var mongoose = require('mongoose');
 
 var ClientSchema = new mongoose.Schema({
 	name: String,
-    owner: String
+  owner: String,
+	date: Date,
+	state: String
 },{strict: false});
 
 module.exports = mongoose.model('Client',ClientSchema);

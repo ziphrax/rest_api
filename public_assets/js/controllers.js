@@ -47,7 +47,35 @@ angular.module('myApp').controller('LoginController', function ($scope, $locatio
   $scope.save = function(){
     $scope.clientDetail.$update(function(data){
       $state.reload();
+      $state.go('client.details',{clientsId:$stateParams.clientsId});
     });
   }
 
-});;
+  $scope.delete = function(){
+    $scope.clientDetail.$delete(function(data){
+      $state.reload();
+      $state.go('clients',{clientsId:''});
+    });
+  }
+
+})
+.controller('ClientNewController',function($scope,$state,$stateParams,Client) {
+
+  $scope.clientDetail = new Client();
+
+  $scope.save = function(){
+    $scope.clientDetail.$save(function(data){
+      console.log(data);
+      //$state.reload();
+      //$state.go('client.details',{clientsId:data._id});
+    });
+  }
+
+  $scope.cancel = function(){
+    $scope.clientDetail.$delete(function(data){
+      $state.reload();
+      $state.go('clients',{clientsId:''});
+    });
+  }
+
+});

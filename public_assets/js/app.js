@@ -46,7 +46,16 @@ myApp.config(function($stateProvider, $urlRouterProvider, $httpProvider) {
             controller: 'ClientDetailsController'
           }
         }
-
+    })
+    .state('clients.new', {
+        url: "/new",
+        parent: "clients.list",
+        views : {
+          'detail@clients':{
+            templateUrl: 'public/partials/clients.new.html',
+            controller: 'ClientNewController'
+          }
+        }
     })
     .state('logout', {
       url: "/logout",
