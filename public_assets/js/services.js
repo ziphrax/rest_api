@@ -50,6 +50,13 @@ angular.module('myApp').factory('Client', function($resource) {
             return angular.fromJson(data).data;
           }
       },
+      get: {
+        method: 'GET',
+        isArray: false,
+        transformResponse: function(data) {
+            return angular.fromJson(data).data[0];
+          }
+      },
       update: {method: 'POST'}
     });
     return resource;

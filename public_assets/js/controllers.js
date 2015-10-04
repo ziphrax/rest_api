@@ -32,8 +32,22 @@ angular.module('myApp').controller('LoginController', function ($scope, $locatio
         alert('not yet implemented');
     };
 
-}).controller('ClientController',function($scope, Client) {
+}).controller('ClientIndexController',function($scope,$stateParams, Client) {
 
-  $scope.clients = Client.query(); //query() returns all the entries
+  $scope.page_name = 'Clients';
 
-});
+}).controller('ClientListController',function($scope,$stateParams, Client) {
+
+  $scope.clients = Client.query();
+
+}).controller('ClientDetailsController',function($scope,$state,$stateParams,Client) {
+
+  $scope.clientDetail = Client.get({id:$stateParams.clientsId});
+
+  $scope.save = function(){
+    $scope.clientDetail.$update(function(data){
+      $state.reload();
+    });
+  }
+
+});;

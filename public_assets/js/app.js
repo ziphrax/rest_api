@@ -1,4 +1,4 @@
-var myApp = angular.module('myApp', ['ui.router','ngResource','angularMoment','authService']);
+var myApp = angular.module('myApp', ['ui.router','ngResource','angularMoment','authService','datePicker']);
 myApp.config(function($stateProvider, $urlRouterProvider, $httpProvider) {
   //
   // For any unmatched url, redirect to /state1
@@ -20,8 +20,33 @@ myApp.config(function($stateProvider, $urlRouterProvider, $httpProvider) {
     })
     .state('clients', {
       url: "/clients",
-      templateUrl: "public/partials/clients.html",
-      controller: 'ClientController'
+      abstract: true,
+      views: {
+        "":{
+          templateUrl: "public/partials/clients.index.html",
+          controller: 'ClientIndexController'
+        }
+      }
+    })
+    .state('clients.list', {
+        url: "",
+        views:{
+          "list@clients":{
+            templateUrl: 'public/partials/clients.list.html',
+            controller: 'ClientListController'
+          }
+        }
+    })
+    .state('clients.detail', {
+        url: "/{clientsId}",
+        parent: "clients.list",
+        views : {
+          'detail@clients':{
+            templateUrl: 'public/partials/clients.detail.html',
+            controller: 'ClientDetailsController'
+          }
+        }
+
     })
     .state('logout', {
       url: "/logout",

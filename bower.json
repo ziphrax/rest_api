@@ -20,6 +20,7 @@
     "angular": "~1.4.7",
     "angular-resource": "~1.4.7",
     "angular-moment": "~0.10.3",
-    "angular-ui-router": "~0.2.15"
+    "angular-ui-router": "~0.2.15",
+    "angular-datepicker": "~1.0.17"
   }
 }

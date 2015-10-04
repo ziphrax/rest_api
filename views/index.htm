@@ -3,6 +3,8 @@
     <head>
         <title>To The Few</title>
         <link rel="stylesheet" href="/public/libs/bootstrap/dist/css/bootstrap.min.css">
+        <link rel="stylesheet" href="/public/libs/angular-datepicker/dist/angular-datepicker.min.css">
+        <link rel="stylesheet" href="/public/css/app.css">
     </head>
     <body>
         <div class="container-fluid">
@@ -20,7 +22,7 @@
                       <a ui-sref="login">Login</a>
                     </span>
                     <span ng-show="isAuthenticated()">
-                      <a ui-sref="clients">Clients</a>
+                      <a ui-sref="clients.list">Clients</a>
                       <a ui-sref="logout">Logout</a>
                     </span>
 
@@ -44,6 +46,7 @@
         <script type="text/javascript" src="/public/libs/angular-moment/angular-moment.min.js"></script>
         <script type="text/javascript" src="/public/libs/angular-resource/angular-resource.min.js"></script>
         <script type="text/javascript" src="/public/libs/angular-ui-router/release/angular-ui-router.min.js"></script>
+        <script type="text/javascript" src="/public/libs/angular-datepicker/dist/angular-datepicker.min.js"></script>
         <script type="text/javascript" src="/public/js/app.js"></script>
         <script type="text/javascript" src="/public/js/services.js"></script>
         <script type="text/javascript" src="/public/js/controllers.js"></script>
