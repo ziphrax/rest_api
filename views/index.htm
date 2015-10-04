@@ -1,5 +1,5 @@
 <!Doctype HTML>
-<html ng-app="restAPP">
+<html ng-app="myApp">
     <head>
         <title>To The Few</title>
         <link rel="stylesheet" href="/public/libs/bootstrap/dist/css/bootstrap.min.css">
@@ -7,65 +7,33 @@
     <body>
         <div class="container-fluid">
 
-            <div class="row">
-                <div class="col-xs-12">
-                    <h1>REST Application</h1>
-                    <h2>The api is hosted at http://localhost/api/v1/</h2>
-                </div>
-            </div>
+          <div class="row">
+              <div class="col-xs-12 col-sm-12">
+                  <div ng-controller="LoginController">
+                    <span>
+                      <a ui-sref="home">Home</a>
+                    </span>
+                    <span>
+                      <a ui-sref="state2">State 2</a>
+                    </span>
+                    <span ng-hide="isAuthenticated()">
+                      <a ui-sref="login">Login</a>
+                    </span>
+                    <span ng-show="isAuthenticated()">
+                      <a ui-sref="clients">Clients</a>
+                      <a ui-sref="logout">Logout</a>
+                    </span>
 
-            <div class="row">
-                <div class="col-xs-12 col-sm-6 col-sm-offset-3">
-                    <div ng-controller="UserCtrl">
-                        <div class="well" ng-hide="isAuthenticated()">
-                            <form class="form">
-                                <div class="row">
-                                    <div class="col-xs-12">
-                                        <legend>Login</legend>
-                                    </div>
-                                </div>
+                  </div>
+              </div>
+          </div>
 
-                                <div class="row">
-                                    <div class="col-xs-12">
-                                        <div class="form-group">
-                                            <input ng-model="user.name" type="text" name="name" placeholder="Username" autocomplete="off" class="form-control"/>
-                                        </div>
-                                    </div>
-                                </div>
+          <div class="row">
+              <div class="col-xs-12 col-sm-12">
+                <div ui-view></div>
+              </div>
+          </div>
 
-                                <div class="row">
-                                    <div class="col-xs-12">
-                                        <div class="form-group">
-                                            <input ng-model="user.password" type="password" name="password" placeholder="Password" autocomplete="off" class="form-control"/>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="row">
-                                    <div class="col-xs-12">
-                                        <div class="form-group pull-right">
-                                            <div class="btn-group">
-                                                <input ng-click="login()" type="submit" value="Login" class="btn btn-success"/>
-                                                <input ng-click="register()" type="submit" value="Register" class="btn btn-default"/>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </form>
-                        </div>
-                        <div class="well" ng-show="isAuthenticated()">
-                            <div class="alert alert-success"><strong>Success:</strong> Logged in <span am-time-ago="loggedInTime"></span>.
-                                <button ng-click="logout()" class="btn btn-success btn-sm pull-right" style="margin-top:-4px;">Logout</button>
-                                <div class="clear"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            </div>
-            </div>
 
         </div>
 
@@ -75,6 +43,7 @@
         <script type="text/javascript" src="/public/libs/angular/angular.min.js"></script>
         <script type="text/javascript" src="/public/libs/angular-moment/angular-moment.min.js"></script>
         <script type="text/javascript" src="/public/libs/angular-resource/angular-resource.min.js"></script>
+        <script type="text/javascript" src="/public/libs/angular-ui-router/release/angular-ui-router.min.js"></script>
         <script type="text/javascript" src="/public/js/app.js"></script>
         <script type="text/javascript" src="/public/js/services.js"></script>
         <script type="text/javascript" src="/public/js/controllers.js"></script>
