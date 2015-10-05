@@ -10,6 +10,15 @@ module.exports = {
             }
         });
     },
+    getNewClient: function(req,res){
+        var newClient = new clientModel();
+
+        newClient.name = '';
+        newClient.owner = req.decoded._id;
+        newClient.date = Date.now();
+
+        res.json({'success': true, data: [newClient] });
+    },
     newClient: function(req,res){
         var newClient = new clientModel();
 

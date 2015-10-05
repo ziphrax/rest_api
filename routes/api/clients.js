@@ -9,6 +9,9 @@ router.route('/')
     .get(clientsController.getClients)
     .post(clientsController.newClient);
 
+router.route('/new')
+    .get(clientsController.getNewClient);
+    
 router.route('/:id')
     .get(clientsController.getClient)
     .post(clientsController.updateClient)

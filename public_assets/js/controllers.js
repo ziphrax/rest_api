@@ -47,14 +47,13 @@ angular.module('myApp').controller('LoginController', function ($scope, $locatio
   $scope.save = function(){
     $scope.clientDetail.$update(function(data){
       $state.reload();
-      $state.go('client.details',{clientsId:$stateParams.clientsId});
+      $state.go('clients.details',{clientsId:$stateParams.clientsId});
     });
   }
 
   $scope.delete = function(){
     $scope.clientDetail.$delete(function(data){
-      $state.reload();
-      $state.go('clients',{clientsId:''});
+     $state.go('^',{reload:true});
     });
   }
 
@@ -65,16 +64,14 @@ angular.module('myApp').controller('LoginController', function ($scope, $locatio
 
   $scope.save = function(){
     $scope.clientDetail.$save(function(data){
-      console.log(data);
-      //$state.reload();
-      //$state.go('client.details',{clientsId:data._id});
+        console.log(data);
+      $state.go('clients.details',{clientsId:data._id});
     });
   }
 
   $scope.cancel = function(){
     $scope.clientDetail.$delete(function(data){
-      $state.reload();
-      $state.go('clients',{clientsId:''});
+      $state.go('^',{reload:true});
     });
   }
 

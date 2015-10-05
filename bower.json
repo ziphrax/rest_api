@@ -23,5 +23,8 @@
     "angular-ui-router": "~0.2.15",
     "angular-datepicker": "~1.0.17",
     "font-awesome": "~4.4.0"
+  },
+  "resolutions": {
+    "angular": ">= 1.0.8"
   }
 }
