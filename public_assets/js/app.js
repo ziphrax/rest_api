@@ -23,7 +23,7 @@ myApp.config(function($stateProvider, $urlRouterProvider, $httpProvider) {
       abstract: true,
       views: {
         "":{
-          templateUrl: "public/partials/clients.index.html",
+          templateUrl: "public/partials/clients/index.html",
           controller: 'ClientIndexController'
         }
       }
@@ -32,7 +32,7 @@ myApp.config(function($stateProvider, $urlRouterProvider, $httpProvider) {
         url: "",
         views:{
           "list@clients":{
-            templateUrl: 'public/partials/clients.list.html',
+            templateUrl: 'public/partials/clients/list.html',
             controller: 'ClientListController'
           }
         }
@@ -42,7 +42,7 @@ myApp.config(function($stateProvider, $urlRouterProvider, $httpProvider) {
         parent: "clients.list",
         views : {
           'detail@clients':{
-            templateUrl: 'public/partials/clients.detail.html',
+            templateUrl: 'public/partials/clients/detail.html',
             controller: 'ClientDetailsController'
           }
         }
@@ -52,7 +52,7 @@ myApp.config(function($stateProvider, $urlRouterProvider, $httpProvider) {
         parent: "clients.list",
         views : {
           'detail@clients':{
-            templateUrl: 'public/partials/clients.new.html',
+            templateUrl: 'public/partials/clients/new.html',
             controller: 'ClientNewController'
           }
         }
@@ -62,7 +62,7 @@ myApp.config(function($stateProvider, $urlRouterProvider, $httpProvider) {
       abstract: true,
       views: {
         "":{
-          templateUrl: "public/partials/programmes.index.html",
+          templateUrl: "public/partials/programmes/index.html",
           controller: 'ProgrammeIndexController'
         }
       }
@@ -71,7 +71,7 @@ myApp.config(function($stateProvider, $urlRouterProvider, $httpProvider) {
         url: "",
         views:{
           "list@programmes":{
-            templateUrl: 'public/partials/programmes.list.html',
+            templateUrl: 'public/partials/programmes/list.html',
             controller: 'ProgrammeListController'
           }
         }
@@ -81,7 +81,7 @@ myApp.config(function($stateProvider, $urlRouterProvider, $httpProvider) {
         parent: "programmes.list",
         views : {
           'detail@programmes':{
-            templateUrl: 'public/partials/programmes.detail.html',
+            templateUrl: 'public/partials/programmes/detail.html',
             controller: 'ProgrammeDetailsController'
           }
         }
@@ -91,7 +91,7 @@ myApp.config(function($stateProvider, $urlRouterProvider, $httpProvider) {
         parent: "programmes.list",
         views : {
           'detail@programmes':{
-            templateUrl: 'public/partials/programmes.new.html',
+            templateUrl: 'public/partials/programmes/new.html',
             controller: 'ProgrammeNewController'
           }
         }
