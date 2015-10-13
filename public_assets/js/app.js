@@ -57,6 +57,45 @@ myApp.config(function($stateProvider, $urlRouterProvider, $httpProvider) {
           }
         }
     })
+    .state('programmes', {
+      url: "/programmes",
+      abstract: true,
+      views: {
+        "":{
+          templateUrl: "public/partials/programmes.index.html",
+          controller: 'ProgrammeIndexController'
+        }
+      }
+    })
+    .state('programmes.list', {
+        url: "",
+        views:{
+          "list@programmes":{
+            templateUrl: 'public/partials/programmes.list.html',
+            controller: 'ProgrammeListController'
+          }
+        }
+    })
+    .state('programmes.detail', {
+        url: "/{programmesId}",
+        parent: "programmes.list",
+        views : {
+          'detail@programmes':{
+            templateUrl: 'public/partials/programmes.detail.html',
+            controller: 'ProgrammeDetailsController'
+          }
+        }
+    })
+    .state('programmes.new', {
+        url: "/new",
+        parent: "programmes.list",
+        views : {
+          'detail@programmes':{
+            templateUrl: 'public/partials/programmes.new.html',
+            controller: 'ProgrammeNewController'
+          }
+        }
+    })
     .state('logout', {
       url: "/logout",
       templateUrl: "public/partials/logout.html"

@@ -1,0 +1,5 @@
+<ul class="list-group">
+  <li class="list-group-item" ng-repeat="programme in programmes">
+    <a ui-sref="programmes.detail({programmesId:programme._id})">{{ programme.name }}</a>
+  </li>
+</ul>

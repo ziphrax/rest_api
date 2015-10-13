@@ -75,4 +75,47 @@ angular.module('myApp').controller('LoginController', function ($scope, $locatio
     });
   }
 
+}).controller('ProgrammeIndexController',function($scope,$stateParams, Programme) {
+
+  $scope.page_name = 'Programmes';
+
+}).controller('ProgrammeListController',function($scope,$stateParams, Programme) {
+
+  $scope.programmes = Programme.query();
+
+}).controller('ProgrammeDetailsController',function($scope,$state,$stateParams,Programme) {
+
+  $scope.programmeDetail = Programme.get({id:$stateParams.programmesId});
+
+  $scope.save = function(){
+    $scope.programmeDetail.$update(function(data){
+      $state.reload();
+      $state.go('programmes.details',{programmesId:$stateParams.programmesId});
+    });
+  }
+
+  $scope.delete = function(){
+    $scope.programmeDetail.$delete(function(data){
+     $state.go('^',{reload:true});
+    });
+  }
+
+})
+.controller('ProgrammeNewController',function($scope,$state,$stateParams,Programme) {
+
+  $scope.programmeDetail = new Programme();
+
+  $scope.save = function(){
+    $scope.programmeDetail.$save(function(data){
+        console.log(data);
+      $state.go('programmes.details',{programmesId:data._id});
+    });
+  }
+
+  $scope.cancel = function(){
+    $scope.programmeDetail.$delete(function(data){
+      $state.go('^',{reload:true});
+    });
+  }
+
 });

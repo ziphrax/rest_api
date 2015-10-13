@@ -60,4 +60,23 @@ angular.module('myApp').factory('Client', function($resource) {
       update: {method: 'POST'}
     });
     return resource;
+}).factory('Programme', function($resource) {
+   var resource =  $resource('/api/v1/programmes/:id', { id: '@_id' }, {
+      query: {
+        method: 'GET',
+        isArray: true,
+        transformResponse: function(data) {
+            return angular.fromJson(data).data;
+          }
+      },
+      get: {
+        method: 'GET',
+        isArray: false,
+        transformResponse: function(data) {
+            return angular.fromJson(data).data[0];
+          }
+      },
+      update: {method: 'POST'}
+    });
+    return resource;
 });
